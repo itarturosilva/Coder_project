@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+</head>
+
+<style type="text/css">
+    #menuBar{
+        width: 100%;
+        height: 40px;
+        background-color:#5CD0C7;
+        border-bottom: 1px solid gray;
+
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 300;
+    }
+    #logo{
+        padding: 5px 0 0 20px;
+        font-weight: bold;
+        font-size: 1.2em;
+        float: left;
+    }
+    #buttonDiv{
+        float: right;
+        padding: 5px 10px 0 0;
+    }
+    #runButton{
+        font-size: 1.2em;
+    }
+    #toggles{
+        width: 200px;
+        margin: 0 auto;
+        list-style: none;
+        border: 1px solid gray;
+        border-radius: 3px;
+        height: 27px;
+        padding: 0;
+        position: relative;
+        top:5px;
+
+    }
+    #toggles li{
+        float: left;
+        border-right: 1px solid gray;
+        padding: 4px 6px;
+    }
+    .clear{
+        clear: both;
+    }
+    .codeContainer{
+
+        height: 100%;
+        width: 50%;
+        float: left;
+        position: relative;
+    }
+    .codeContainer textarea{
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-right: 1px solid gray;
+        font-family: monotype;
+        font-size: 1.1em;
+        padding: 5px;
+
+    }
+    .codeLabel{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #02A9FF;
+    }
+    #cssContainer, #jsContainer{
+        display: none;
+    }
+    iframe{
+        height: 100%;
+        position: relative;
+        left: 20px;
+        border:none;
+    }
+
+
+
+</style>
+
+
+<body>
+    <div id="wrapper">
+        <div id="menuBar">
+            <div id="logo">
+                Coder
+            </div>
+            <div id="buttonDiv">
+                <button id="runButton">Run</button>
+            </div>
+            <ul id="toggles">
+                <li class="toggle">HTML</li>
+                <li class="toggle">CSS</li>
+                <li class="toggle">JS</li>
+                <li class="toggle" style="border: none">Result</li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="codeContainer" id="htmlContainer">
+            <div class="codeLabel">HTML</div>
+
+
+            <textarea>asdasd</textarea>
+
+        </div>
+        <div class="codeContainer" id="cssContainer">
+            <div class="codeLabel">CSS</div>
+
+
+            <textarea>asdasd</textarea>
+
+        </div>
+        <div class="codeContainer" id="jsContainer">
+            <div class="codeLabel">JS</div>
+
+
+            <textarea>asdasd</textarea>
+
+        </div>
+        <div class="codeContainer" id="resultContainer">
+            <div class="codeLabel">Result</div>
+
+
+            <iframe></iframe>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var windowHeight=$(window).height();
+        var menuBarHeight=$("#menuBar").height();
+        var codeContainer= windowHeight-menuBarHeight;
+        $(".codeContainer").css("height",codeContainer+"px");
+
+    </script>
+
+</body>
+</html>
