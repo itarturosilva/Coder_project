@@ -40,7 +40,7 @@
         font-size: 1.2em;
     }
     #toggles{
-        width: 200px;
+        width: 194px;
         margin: 0 auto;
         list-style: none;
         border: 1px solid gray;
@@ -73,8 +73,9 @@
         border-right: 1px solid gray;
         font-family: monotype;
         font-size: 1.1em;
-        padding: 5px;
-        color:#9B1B9B;;
+        padding: 10px;
+        color:#9B1B9B;
+        box-sizing:border-box;
 
 
     }
@@ -84,7 +85,7 @@
         top: 10px;
         color: #02A9FF;
     }
-    #cssContainer, #jsContainer{
+    #CSSContainer, #JSContainer{
         display: none;
     }
     iframe{
@@ -120,32 +121,24 @@
             </ul>
         </div>
         <div class="clear"></div>
-        <div class="codeContainer" id="htmlContainer">
+        <div autofocus class="codeContainer" id="HTMLContainer">
             <div class="codeLabel">HTML</div>
-
-
-            <textarea>asdasd</textarea>
+            <textarea id="HTMLCode" placeholder="Write your HTML code here..."></textarea>
 
         </div>
-        <div class="codeContainer" id="cssContainer">
+        <div class="codeContainer" id="CSSContainer">
             <div class="codeLabel">CSS</div>
-
-
-            <textarea>asdasd</textarea>
+            <textarea id="CSSCode" placeholder="Write your CSS code here..."></textarea>
 
         </div>
-        <div class="codeContainer" id="jsContainer">
+        <div class="codeContainer" id="JSContainer">
             <div class="codeLabel">JS</div>
-
-
-            <textarea>asdasd</textarea>
+            <textarea id="JSCode" placeholder="Write your JS code here..."></textarea>
 
         </div>
-        <div class="codeContainer" id="resultContainer">
+        <div class="codeContainer" id="ResultContainer">
             <div class="codeLabel">Result</div>
-
-
-            <iframe></iframe>
+            <iframe id="resultFrame"></iframe>
 
         </div>
     </div>
@@ -154,13 +147,44 @@
 
 
     <script>
+
         var windowHeight=$(window).height();
         var menuBarHeight=$("#menuBar").height();
         var codeContainer= windowHeight-menuBarHeight;
         $(".codeContainer").css("height",codeContainer+"px");
+
         $(".toggle").click( function(){
+            $(this).toggleClass("selected");
+
+            var activeDiv=$(this).html();
+            //alert(activeDiv);
+
+
+            $("#"+activeDiv+"Container").toggle();
+
+            var showingDivs=$(".codeContainer").filter( function(){
+                return($(this).css("display")!="none");
+            }).length;
+
+            //alert(showingDivs);
+
+            var width=100/showingDivs;
+            $(".codeContainer").css("width",width+"%");
+
 
         });
+            //Changes the content of the html on the html
+        //html and css
+        $("#runButton").click(function(){
+           $("iframe").contents().find("html").html("<style>"+$("#CSSCode").val()+ "</style>" + $("#HTMLCode").val());
+
+            //js
+            document.getElementById("resultFrame").contentWindow.eval($("#JSCode").val());
+
+
+        });
+
+
 
     </script>
 
